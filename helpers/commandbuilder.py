@@ -1,4 +1,5 @@
 def add_input(cmd, cf):
+    print(cf['input_file'])
     assert 'input_file' in cf, 'The config is missing mandatory attribute : input_file'
     return cmd + " -re -i " + cf['input_file']
 

@@ -2,8 +2,10 @@ import subprocess
 import json
 import os
 import helpers.commandbuilder as cb
+from dotenv import load_dotenv
 
-ffmpeg = "C:\\ffmpeg\\bin\\ffmpeg"
+load_dotenv()  # take environment variables from .env.
+ffmpeg = os.environ.get("FFMPEG")
 
 
 def grab_user_input():
@@ -25,7 +27,6 @@ def read_config(filepath='./config.json'):
 
 
 def build_dash_command(cf):
-    var_a = 10
     cmd = ffmpeg
     cmd = cb.add_input(cmd, cf)
     cmd = cb.add_preset(cmd, cf)
