@@ -2,7 +2,7 @@
 #Dash and fallback code from zazu.berlin 2020, Version 20200424
 # https://blog.zazu.berlin/internet-programmierung/mpeg-dash-and-hls-adaptive-bitrate-streaming-with-ffmpeg.html
 
-VIDEO_IN=./4k60fps.webm
+VIDEO_IN=../media/4k60fps.webm
 FPS=30
 GOP_SIZE=60
 PRESET_P=veryfast
@@ -25,7 +25,7 @@ ffmpeg -i $VIDEO_IN -y \
     -init_seg_name init\$RepresentationID\$.\$ext\$ -media_seg_name chunk\$RepresentationID\$-\$Number%05d\$.\$ext\$ \
     -use_template 1 -use_timeline 1  \
     -seg_duration 4 -adaptation_sets "id=0,streams=v id=1,streams=a" \
-    -f dash Dash/50percent.mpd
+    -f dash ../media/dash/index.mpd
 
 
 
