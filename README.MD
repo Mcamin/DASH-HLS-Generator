@@ -24,7 +24,7 @@ using FFmpeg for both VOD and live content.
 git clone git@github.com:Mcamin/DASH-HLS-Generator.git
 # 
 # Create environment and  install dependencies
-conda env create --name dash --file requirements.yml 
+conda env create --name dash --file environment.yml 
 ```
 
 ##### 2. Setup Environment Variables
