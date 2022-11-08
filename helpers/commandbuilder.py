@@ -103,3 +103,25 @@ def add_dash_attributes(cmd, cf):
         cmd = cmd + f''' -adaptation_sets "{cf['adaptation_sets_fmt']}" '''
     cmd = cmd + " -f dash " + cf['mpd_filepath'] + "index.mpd"
     return cmd
+
+
+def add_hls_attributes(cmd, cf):
+    assert 'hls_playlist_type' in cf, 'The config is missing mandatory attribute : hls_playlist_type'
+    assert 'hls_segment_filename' in cf, 'The config is missing mandatory attribute : hls_segment_filename'
+
+    cmd = cmd + " -map a:0 -map a:0 -map a:0 "
+    cmd = cmd + " -f hls "
+    cmd = cmd + " -hls_playlist_type " + str(cf['hls_playlist_type'])
+    cmd = cmd + " -master_pl_name index.m3u8  "
+    cmd = cmd + ' -var_stream_map "v:0,a:0 v:1,a:1 v:2,a:2" '
+    if 'hls_time' in cf:
+        cmd = cmd + " -hls_time " + str(cf['hls_time'])
+    if 'hls_flags' in cf:
+        cmd = cmd + " -hls_flags " + cf['hls_flags']
+    if 'strftime_mkdir' in cf:
+        cmd = cmd + " -strftime_mkdir " + str(cf['strftime_mkdir'])
+    if 'hls_segment_filename' in cf:
+        cmd = cmd + " -hls_segment_filename " + cf['output_path'] + str(cf['hls_segment_filename'])
+    if 'hls_segment_filename' in cf:
+        cmd = cmd + " " + cf['output_path'] + str(cf['stream_filename'])
+    return cmd

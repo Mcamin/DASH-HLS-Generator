@@ -12,7 +12,6 @@
     "sc_threshold": 0,
     "keyint_min": 60,
     "preset": "veryfast",
-    "video_size": "1280x720",
     "use_template": 1,
     "use_timeline": 1,
     "segment_duration": 4,
@@ -23,7 +22,7 @@
   }
 ],
  "hls": [
-  {"input_file":"./4k60fps.webm",
+  {"input_file":"./media/4k60fps.webm",
    "fps": 30,
    "gop_size": 60,
     "pixel_format": "yuv420p",
@@ -35,8 +34,13 @@
     "sc_threshold": 0,
     "keyint_min": 60,
     "preset": "veryfast",
-    "video_size": "1280x720",
-    "mpd_filepath": "./Dash/50percent/"
+    "hls_time": 4,
+    "hls_playlist_type": "vod",
+    "hls_flags": "independent_segments",
+     "hls_segment_filename": "stream_%v/s%06d.ts",
+    "strftime_mkdir": 1,
+    "stream_filename": "stream_%v.m3u8",
+     "output_path": "./media/hls/"
   }
 ]
 }

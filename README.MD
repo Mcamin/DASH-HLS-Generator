@@ -4,9 +4,10 @@ This project offers a simple config-file based approach to prepare streaming med
 using FFmpeg for both VOD and live content.
 
 ## TODO:
+- [ ] Document passed config 
 - [ ] Set up the representations shuffle process 
 - [ ] Add option to delete local generated file
-- [ ] connect to mongo database to save the metadata and url 
+- [ ] Connect to mongo database to save the metadata and url 
 ## Installation & Usage
 
 ### Pre-Requisites
