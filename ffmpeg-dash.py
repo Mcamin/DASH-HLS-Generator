@@ -1,6 +1,7 @@
 import subprocess
 import json
 import os
+import helpers.commandbuilder as cb
 
 ffmpeg = "C:\\ffmpeg\\bin\\ffmpeg"
 
@@ -24,6 +25,21 @@ def read_config(filepath='./config.json'):
 
 
 def build_dash_command(cf):
+    var_a = 10
+    cmd = ffmpeg
+    cmd = cb.add_input(cmd, cf)
+    cmd = cb.add_preset(cmd, cf)
+    cmd = cb.add_key_min(cmd, cf)
+    cmd = cb.add_gop_size(cmd, cf)
+    cmd = cb.add_threshold(cmd, cf)
+    cmd = cb.add_fps(cmd, cf)
+    cmd = cb.add_video_codec(cmd, cf)
+    cmd = cb.add_pixel_format(cmd, cf)
+
+
+    f"""{ffmpeg }This is my quoted variable: "{var_a}". """
+    ## checkInpu
+
     command_list = [
         ffmpeg,
         "-re -i",
@@ -84,9 +100,10 @@ def create_directory(path):
 def generate_dash_files(configs):
     for cf in configs:
         cmd = build_dash_command(cf)
+        #cmd = [ffmpeg, "-i", "./media/4k60fps.webm ","./media/output.mp4"]
         create_directory(cf["mpd_filepath"])
         print(cmd)
-        if subprocess.run(cmd).returncode == 0:
+        if subprocess.run(cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT).returncode == 0:
             print("FFmpeg Script Ran Successfully")
         else:
             print("There was an error running your FFmpeg script")
