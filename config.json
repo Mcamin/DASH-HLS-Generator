@@ -16,7 +16,7 @@
     "use_template": 1,
     "use_timeline": 1,
     "segment_duration": 4,
-    "init_seg_name": "init\\$RepresentationID\\$.\\$ext\\$ ",
+    "init_seg_name": "init\\$RepresentationID\\$.\\$ext\\$",
     "media_seg_name": " chunk\\$RepresentationID\\$-\\$Number%05d\\$.\\$ext\\$",
     "adaptation_sets_fmt": "id=0,streams=v id=1,streams=a",
     "mpd_filepath": "./media/dash/"
