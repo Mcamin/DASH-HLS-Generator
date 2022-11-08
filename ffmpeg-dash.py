@@ -1,5 +1,6 @@
 import subprocess
 import json
+import os
 
 ffmpeg = "C:\\ffmpeg\\bin\\ffmpeg"
 
@@ -13,7 +14,7 @@ def grab_user_input():
         return user_input
 
     print("Hit enter for default value\n")
-    return filter_input("Config File: ", "./config.json")
+    return filter_input("Enter the config filepath: ", "./config.json")
 
 
 def read_config(filepath='./config.json'):
@@ -51,19 +52,44 @@ def build_dash_command(cf):
         cf["audio_channel"],
         "-ar",
         cf["audio_rate"],
-        "-filter_complex",
+        "-map v:0 -s:0 $V_SIZE -b:v:0 2000K -maxrate:0 2000K -bufsize:0 2000K/2",
+        "-map v:0 -s:1 $V_SIZE -b:v:1 1000K -maxrate:1 1000K -bufsize:1 1000K/2",
+        "-map v:0 -s:2 $V_SIZE -b:v:2 500K -maxrate:2 500K -bufsize:2 500K/2",
+        "-map 0:a",
+        "-init_seg_name",
+        cf["init_seg_name"],
+        "-media_seg_name",
+        cf["media_seg_name"],
+        "-use_template",
+        cf["use_template"],
+        "-use_timeline",
+        cf["use_timeline"],
+        "-seg_duration",
+        cf["segment_duration"],
         "-adaptation_sets",
         cf["adaptation_sets_fmt"],
         "-f dash",
         cf["mpd_filepath"],
+        "index.mpd"
     ]
+    return command_list
+
+
+def create_directory(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
+        print("The new directory is created!")
 
 
 def generate_dash_files(configs):
-    print(configs)
-    dash_cmds_list = []
     for cf in configs:
-        dash_cmds_list.append(build_dash_command(cf))
+        cmd = build_dash_command(cf)
+        create_directory(cf["mpd_filepath"])
+        print(cmd)
+        if subprocess.run(cmd).returncode == 0:
+            print("FFmpeg Script Ran Successfully")
+        else:
+            print("There was an error running your FFmpeg script")
 
 
 def generate_hls_files(configs):
@@ -73,8 +99,8 @@ def generate_hls_files(configs):
 def run_ffmpeg():
     filepath = grab_user_input()
     config = read_config(filepath)
-    generate_dash_files(config.dash)
-    generate_hls_files(config.hls)
+    generate_dash_files(config["dash"])
+    # generate_hls_files(config.hls)
 
 
 if __name__ == "__main__":
