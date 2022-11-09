@@ -1,6 +1,6 @@
 {
  "dash":[
-  {"input_file":"./media/4k60fps.webm",
+  {"input_file":"../media/4k60fps.webm",
    "fps": 30,
    "gop_size": 60,
     "pixel_format": "yuv420p",

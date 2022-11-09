@@ -6,6 +6,7 @@ import os
 load_dotenv()
 MONGO_URI = os.environ.get("MONGO_URI")
 MONGO_DB = os.environ.get("MONGO_DB")
+CLOUDFRONT_BASE_URL = os.environ.get("CLOUDFRONT_BASE_URL")
 
 
 def connect():
@@ -40,6 +41,10 @@ def insert_config(collection, config):
     Returns:
 
     """
+    if 'hls_playlist_type' in config:
+        config["url"] = CLOUDFRONT_BASE_URL + config["output_path"] + "/index.m3u8"
+    else:
+        config["url"] = CLOUDFRONT_BASE_URL + config["output_path"] + "/index.mpd"
     config["last_modified"] = datetime.datetime.utcnow()
     collection.insert_one(config)
     print("Config saved successfully.")
@@ -53,4 +58,3 @@ if __name__ == "__main__":
             "tags": ["mongodb", "python", "pymongo"]
             }
     insert_config(_col, post)
-    
