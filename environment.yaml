@@ -1,0 +1,45 @@
+name: dash
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - boto3=1.24.2=py39haa95532_0
+  - botocore=1.27.2=py39haa95532_0
+  - brotlipy=0.7.0=py39h2bbff1b_1003
+  - bzip2=1.0.8=h8ffe710_4
+  - ca-certificates=2022.4.26=haa95532_0
+  - certifi=2022.6.15=py39haa95532_0
+  - cffi=1.15.0=py39h2bbff1b_1
+  - click=8.1.3=win_pyhd8ed1ab_2
+  - colorama=0.4.6=pyhd8ed1ab_0
+  - cryptography=37.0.1=py39h21b164f_0
+  - idna=3.3=pyhd3eb1b0_0
+  - jmespath=0.10.0=pyhd3eb1b0_0
+  - libffi=3.4.2=h8ffe710_5
+  - libsqlite=3.39.4=hcfcfb64_0
+  - libzlib=1.2.13=hcfcfb64_4
+  - openssl=3.0.7=hcfcfb64_0
+  - pip=22.3.1=pyhd8ed1ab_0
+  - pycparser=2.21=pyhd3eb1b0_0
+  - pymongo=3.12.0=py39hd77b12b_0
+  - pyopenssl=22.0.0=pyhd3eb1b0_0
+  - pysocks=1.7.1=py39haa95532_0
+  - python=3.9.13=hcf16a7b_0_cpython
+  - python-dateutil=2.8.2=pyhd3eb1b0_0
+  - python-dotenv=0.21.0=pyhd8ed1ab_0
+  - s3transfer=0.6.0=py39haa95532_0
+  - setuptools=65.5.1=pyhd8ed1ab_0
+  - six=1.16.0=pyhd3eb1b0_1
+  - sqlite=3.39.4=hcfcfb64_0
+  - tk=8.6.12=h8ffe710_0
+  - tqdm=4.64.1=pyhd8ed1ab_0
+  - tzdata=2022f=h191b570_0
+  - ucrt=10.0.22621.0=h57928b3_0
+  - urllib3=1.26.9=py39haa95532_0
+  - vc=14.3=h3d8a991_9
+  - vs2015_runtime=14.32.31332=h1d6e394_9
+  - wheel=0.38.2=pyhd8ed1ab_0
+  - win_inet_pton=1.1.0=py39haa95532_0
+  - xz=5.2.6=h8d14728_0
+prefix: C:\ProgramData\Anaconda3\envs\dash
