@@ -86,8 +86,11 @@ def add_video_mapping(cmd, cf):
 
 def add_audio_mapping(cmd, cf):
     # TODO: adjust it according to passed config
-    maps = """ -map 0:a """
-    return cmd + maps
+    if "hls_playlist_type" in cf:
+        cmd = cmd + " -map a:0 -map a:0 -map a:0 "
+    else:
+        cmd = cmd + """ -map 0:a """
+    return cmd
 
 
 def add_filters(cmd, cf):
@@ -116,7 +119,6 @@ def add_hls_attributes(cmd, cf):
     assert 'hls_playlist_type' in cf, 'The config is missing mandatory attribute : hls_playlist_type'
     assert 'hls_segment_filename' in cf, 'The config is missing mandatory attribute : hls_segment_filename'
 
-    cmd = cmd + " -map a:0 -map a:0 -map a:0 "
     cmd = cmd + " -f hls "
     cmd = cmd + " -hls_playlist_type " + str(cf['hls_playlist_type'])
     cmd = cmd + " -master_pl_name index.m3u8  "
@@ -128,7 +130,7 @@ def add_hls_attributes(cmd, cf):
     if 'strftime_mkdir' in cf:
         cmd = cmd + " -strftime_mkdir " + str(cf['strftime_mkdir'])
     if 'hls_segment_filename' in cf:
-        cmd = cmd + " -hls_segment_filename " + cf['output_path'] + "/" + str(cf['hls_segment_filename'])
+        cmd = cmd + " -hls_segment_filename " + base_path + cf['output_path'] + "/" + str(cf['hls_segment_filename'])
     if 'hls_segment_filename' in cf:
         cmd = cmd + " " + base_path + cf['output_path'] + "/" + str(cf['stream_filename'])
     return cmd

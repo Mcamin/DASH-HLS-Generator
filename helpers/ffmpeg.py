@@ -53,8 +53,8 @@ def process_configs(stream_type, configs):
         cmd = re.sub(' +', ' ', cmd)
         print("Executing the following command:")
         print(cmd)
-        # shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
-        if subprocess.run(cmd).returncode == 0:
+        # shell=True,
+        if subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT).returncode == 0:
             print("FFmpeg Script Ran Successfully")
             upload_files(filepath, cf["output_path"])
             if not (db is None):
