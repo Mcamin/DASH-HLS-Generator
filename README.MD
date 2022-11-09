@@ -22,7 +22,7 @@ using FFmpeg for both VOD and live content.
 
 ```bash
 # Clone the project
-git clone git@github.com:Mcamin/DASH-HLS-Generator.git
+git clone git@gitlab.fokus.fraunhofer.de:dashcenc/dash-hls-generator.git
 # 
 # Create environment and  install dependencies
 conda env create --name dash --file environment.yml 
