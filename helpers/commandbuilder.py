@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-base_path = os.environ.get("OUTPUT_BASE_PATH")
+base_path = os.environ.get("OUTPUT_ABSOLUTE_PATH")
 
 
 def add_input(cmd, cf):
@@ -108,7 +108,7 @@ def add_dash_attributes(cmd, cf):
         cmd = cmd + " -seg_duration " + str(cf['segment_duration'])
     if 'adaptation_sets_fmt' in cf:
         cmd = cmd + f''' -adaptation_sets "{cf['adaptation_sets_fmt']}" '''
-    cmd = cmd + " -f dash " + base_path + cf['output_path'] + "index.mpd"
+    cmd = cmd + " -f dash " + base_path + cf['output_path'] + "/index.mpd"
     return cmd
 
 
@@ -128,7 +128,7 @@ def add_hls_attributes(cmd, cf):
     if 'strftime_mkdir' in cf:
         cmd = cmd + " -strftime_mkdir " + str(cf['strftime_mkdir'])
     if 'hls_segment_filename' in cf:
-        cmd = cmd + " -hls_segment_filename " + cf['output_path'] + str(cf['hls_segment_filename'])
+        cmd = cmd + " -hls_segment_filename " + cf['output_path'] + "/" + str(cf['hls_segment_filename'])
     if 'hls_segment_filename' in cf:
-        cmd = cmd + " " + base_path + cf['output_path'] + str(cf['stream_filename'])
+        cmd = cmd + " " + base_path + cf['output_path'] + "/" + str(cf['stream_filename'])
     return cmd

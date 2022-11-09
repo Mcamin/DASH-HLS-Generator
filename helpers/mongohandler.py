@@ -47,7 +47,7 @@ def insert_config(collection, config):
         config["url"] = CLOUDFRONT_BASE_URL + config["output_path"] + "/index.mpd"
     config["last_modified"] = datetime.datetime.utcnow()
     collection.insert_one(config)
-    print("Config saved successfully.")
+    print("The used config to generate the files was saved successfully to the database.")
 
 
 if __name__ == "__main__":
