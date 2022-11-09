@@ -1,3 +1,10 @@
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+base_path = os.environ.get("OUTPUT_BASE_PATH")
+
+
 def add_input(cmd, cf):
     assert 'input_file' in cf, 'The config is missing mandatory attribute : input_file'
     return cmd + " -re -i " + cf['input_file']
@@ -88,7 +95,7 @@ def add_filters(cmd, cf):
 
 
 def add_dash_attributes(cmd, cf):
-    assert 'mpd_filepath' in cf, 'The config is missing mandatory attribute : mpd_filepath'
+    assert 'output_path' in cf, 'The config is missing mandatory attribute : output_path'
     if 'init_seg_name' in cf:
         cmd = cmd + " -init_seg_name " + cf['init_seg_name']
     if 'media_seg_name' in cf:
@@ -101,7 +108,7 @@ def add_dash_attributes(cmd, cf):
         cmd = cmd + " -seg_duration " + str(cf['segment_duration'])
     if 'adaptation_sets_fmt' in cf:
         cmd = cmd + f''' -adaptation_sets "{cf['adaptation_sets_fmt']}" '''
-    cmd = cmd + " -f dash " + cf['mpd_filepath'] + "index.mpd"
+    cmd = cmd + " -f dash " + base_path + cf['output_path'] + "index.mpd"
     return cmd
 
 
@@ -123,5 +130,5 @@ def add_hls_attributes(cmd, cf):
     if 'hls_segment_filename' in cf:
         cmd = cmd + " -hls_segment_filename " + cf['output_path'] + str(cf['hls_segment_filename'])
     if 'hls_segment_filename' in cf:
-        cmd = cmd + " " + cf['output_path'] + str(cf['stream_filename'])
+        cmd = cmd + " " + base_path + cf['output_path'] + str(cf['stream_filename'])
     return cmd

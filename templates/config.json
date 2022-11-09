@@ -20,5 +20,27 @@
     "adaptation_sets_fmt": "id=0,streams=v id=1,streams=a",
     "output_path": "dash/dash_test"
   }
+],
+ "hls": [
+  {"input_file":"./media/4k60fps.webm",
+   "fps": 30,
+   "gop_size": 60,
+    "pixel_format": "yuv420p",
+    "codec_video": "libx264",
+    "codec_audio": "aac",
+    "bitrate_audio": "128k",
+    "audio_channel": 1,
+    "audio_rate": 44100,
+    "sc_threshold": 0,
+    "keyint_min": 60,
+    "preset": "veryfast",
+    "hls_time": 4,
+    "hls_playlist_type": "vod",
+    "hls_flags": "independent_segments",
+     "hls_segment_filename": "stream_%v/s%06d.ts",
+    "strftime_mkdir": 1,
+    "stream_filename": "stream_%v.m3u8",
+     "output_path": "hls/hls_test"
+  }
 ]
 }

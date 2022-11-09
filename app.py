@@ -18,11 +18,11 @@ def grab_user_input():
     return filter_input("Enter the config filepath: ", "./config.json")
 
 
-def read_config(filepath='./config.json'):
+def read_config(file_path='./config.json'):
     """
     Read the config file
     Args:
-        filepath:  The filepath for the config to use
+        file_path:  The filepath for the config to use
     Returns: The retrieved config
     """
     with open(filepath, 'r') as f:
