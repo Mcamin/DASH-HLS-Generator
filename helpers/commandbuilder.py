@@ -131,6 +131,6 @@ def add_hls_attributes(cmd, cf):
         cmd = cmd + " -strftime_mkdir " + str(cf['strftime_mkdir'])
     if 'hls_segment_filename' in cf:
         cmd = cmd + " -hls_segment_filename " + base_path + cf['output_path'] + "/" + str(cf['hls_segment_filename'])
-    if 'hls_segment_filename' in cf:
+    if 'stream_filename' in cf:
         cmd = cmd + " " + base_path + cf['output_path'] + "/" + str(cf['stream_filename'])
     return cmd
