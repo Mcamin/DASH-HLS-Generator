@@ -3,10 +3,9 @@
 This project offers a simple config-file based approach to prepare streaming media. It greatly simplifies the process of
 using FFmpeg for both VOD and live content.
 ##Note 
-__The configs were only tested using all the available attributes. Removing some of the attributes might cause issues when
+__The configs were only tested using all the available attributes on windows. Removing some attributes might cause issues when
 generating the files.__
 ## TODO:
-- [X] Document passed config 
 - [ ] Add filter capabilities to draw a box with video details 
 - [ ] Set up the representations shuffle process (to force bitrate fluctuation)
 - [ ] Add option to delete local generated file
@@ -59,6 +58,8 @@ Set the environment variables according to your local setup.
 - `MONGO_URI` and `MONGO_DB` are the needed config to save the configs to the database.
     If not passed the files will be saved locally in the given output folder in the configs
 - `CLOUDFRONT_BASE_URL` is the CDN url used to serve the streaming media. This is used only if AWS credentials is passed 
+- `OUTPUT_ABSOLUTE_PATH` The absolute path to be used fo generating the files (examples : [Windows: 'C:\\media\\, Linux: '/media/'])
+
 and cloudfront is configured.  
 
 
