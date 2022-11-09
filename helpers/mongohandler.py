@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 from dotenv import load_dotenv
+import datetime
 import os
 
 load_dotenv()
@@ -13,8 +14,7 @@ def connect():
     Returns: The database instance
     """
     client = MongoClient(MONGO_URI)
-    db = client[MONGO_DB]
-    return db
+    return client[MONGO_DB]
 
 
 def get_collection(db, collection):
@@ -40,5 +40,17 @@ def insert_config(collection, config):
     Returns:
 
     """
+    config["last_modified"] = datetime.datetime.utcnow()
     collection.insert_one(config)
     print("Config saved successfully.")
+
+
+if __name__ == "__main__":
+    _db = connect()
+    _col = get_collection(_db, "test")
+    post = {"author": "Mike",
+            "text": "My first blog post!",
+            "tags": ["mongodb", "python", "pymongo"]
+            }
+    insert_config(_col, post)
+    
