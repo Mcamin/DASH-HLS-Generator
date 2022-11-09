@@ -1,7 +1,36 @@
-import helpers.s3handler as s3
+import helpers.ffmpeg as f
+import json
 
+
+def grab_user_input():
+    """
+    Get the user input
+    """
+
+    def filter_input(message, default):
+        user_input = input(message)
+
+        if user_input == "":
+            user_input = default
+        return user_input
+
+    print("Hit enter for default value\n")
+    return filter_input("Enter the config filepath: ", "./config.json")
+
+
+def read_config(filepath='./config.json'):
+    """
+    Read the config file
+    Args:
+        filepath:  The filepath for the config to use
+    Returns: The retrieved config
+    """
+    with open(filepath, 'r') as f:
+        data = json.load(f)
+        return data
 
 
 if __name__ == "__main__":
-    s3.upload_folder_to_s3(".\\media\\hls\\testmedia", "hls/testmedia")
-
+    filepath = grab_user_input()
+    config = read_config(filepath)
+    f.generate_streams(config)
