@@ -3,7 +3,7 @@ from tqdm import tqdm
 import boto3
 from dotenv import load_dotenv
 
-load_dotenv()  # take environment variables from .env.
+load_dotenv()
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 BUCKET_NAME = os.environ.get("BUCKET_NAME")
@@ -26,3 +26,7 @@ def upload_folder_to_s3(input_dir, s3_path):
             s3_client.upload_file(local_file, BUCKET_NAME, s3_file)
             pbar.set_description(f'Uploaded {local_file} to {s3_file}')
     print(f"Successfully uploaded {input_dir} to S3 {s3_path}")
+
+
+if __name__ == "__main__":
+    upload_folder_to_s3("..\\media\\testmedia", "testmedia")

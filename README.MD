@@ -7,7 +7,7 @@ using FFmpeg for both VOD and live content.
 - [ ] Document passed config 
 - [ ] Set up the representations shuffle process 
 - [ ] Add option to delete local generated file
-- [ ] Connect to mongo database to save the metadata and url 
+- [X] Connect to mongo database to save the metadata and url 
 ## Installation & Usage
 
 ### Pre-Requisites
@@ -55,6 +55,8 @@ you can set the environment variables according to your local setup.
 - `FFMPEG` is the path to the ffmpeg binary.
 - `MONGO_URI` and `MONGO_DB` are the needed config to save the configs to the database.
     If not passed the files will be saved locally in the given output folder in the configs
+- `CLOUDFRONT_BASE_URL` is the CDN url used to serve the streaming media. This is used only if AWS credentials is passed 
+and cloudfront is configured.  
 
 
 
@@ -63,6 +65,9 @@ To be added
 
 ### Docker 
 To be added 
+
+## References 
+- 
 
 ### Things to consider
 
