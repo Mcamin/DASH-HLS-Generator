@@ -47,9 +47,9 @@ FFMPEG="FFMPEG PATH"
 you can set the environment variables according to your local setup.
 
 - `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` are the amazon needed credentials to access the bucket.
+    If not passed the files will be kept locally given output folder in the configs
 - `BUCKET_NAME` is the name of the bucket setup on amazon to be used for storing and delivering content.
-- `FFMPEG` is the name of the bucket setup on amazon to be used for storing and delivering content.
-
+- `FFMPEG` is the path to the ffmpeg binary.
 
 
 
