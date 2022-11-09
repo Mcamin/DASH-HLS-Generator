@@ -3,8 +3,9 @@
 This project offers a simple config-file based approach to prepare streaming media. It greatly simplifies the process of
 using FFmpeg for both VOD and live content.
 ##Note 
-__The configs were only tested using all the available attributes on windows. Removing some attributes might cause issues when
+- __The configs were only tested using all the available attributes on Windows. Removing some attributes might cause issues when
 generating the files.__
+- __The current setup generates 3 representations / streams for the passed configs. This will be configurable in the future__
 ## TODO:
 - [ ] Add filter capabilities to draw a box with video details 
 - [ ] Set up the representations shuffle process (to force bitrate fluctuation)
@@ -47,6 +48,7 @@ BUCKET_NAME="BUCKET"
 FFMPEG="FFMPEG PATH"
 MONGO_URI="The Mongo URI"
 MONGO_DB="The database to use"
+OUTPUT_ABSOLUTE_PATH= "The output absolute path"
 ```
 
 Set the environment variables according to your local setup.
