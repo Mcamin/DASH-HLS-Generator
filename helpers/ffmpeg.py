@@ -1,9 +1,9 @@
 import subprocess
 import re
 import os
-import commandbuilder as cb
-import mongohandler as mongo
-import s3handler as s3
+import helpers.commandbuilder as cb
+import helpers.mongohandler as mongo
+import helpers.s3handler as s3
 import json
 from dotenv import load_dotenv
 
@@ -53,8 +53,8 @@ def process_configs(stream_type, configs):
         cmd = re.sub(' +', ' ', cmd)
         print("Executing the following command:")
         print(cmd)
-        # shell=True,
-        if subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT).returncode == 0:
+        # shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
+        if subprocess.run(cmd).returncode == 0:
             print("FFmpeg Script Ran Successfully")
             upload_files(filepath, cf["output_path"])
             if not (db is None):

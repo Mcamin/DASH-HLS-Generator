@@ -10,6 +10,9 @@ generating the files.__
 - [ ] Add filter capabilities to draw a box with video details 
 - [ ] Set up the representations shuffle process (to force bitrate fluctuation)
 - [ ] Add option to delete local generated file
+- [ ] Fix streams in hls generated files 
+- [ ] Check mp4box and GPAC for generating HLS Dash  compliant streams 
+- [ ] Check shaka packager and streamer and how they do generate multi period content
 
 ## Installation & Usage
 
@@ -114,6 +117,7 @@ To be added
 ### References: 
 - http://underpop.online.fr/f/ffmpeg/help/dash-2.htm.gz
 - https://ffmpeg.org/ffmpeg-formats.html#dash-2
+- https://ottverse.com/mpeg-dash-packaging-using-gpac-mp4box-live-vod/
 
 
 ### Things to consider
