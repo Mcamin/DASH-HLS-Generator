@@ -6,6 +6,7 @@
    "input_file":"./media/4k60fps.webm",
    "fps": 30,
    "gop_size": 60,
+   "fluctuate_bitrate": true,
     "pixel_format": "yuv420p",
     "codec_video": "libx264",
     "codec_audio": "aac",
@@ -19,7 +20,6 @@
     "use_timeline": 1,
     "segment_duration": 4,
     "init_seg_name": "init$RepresentationID$.$ext$",
-    "media_seg_name": " chunk$RepresentationID$-$Number%05d$.$ext$",
     "adaptation_sets_fmt": "id=0,streams=v id=1,streams=a",
     "output_path": "dash/black_widow",
     "representations": [
@@ -52,6 +52,7 @@
    "input_file":"./media/4k60fps.webm",
    "fps": 30,
    "gop_size": 60,
+   "fluctuate_bitrate": true,
     "pixel_format": "yuv420p",
     "codec_video": "libx264",
     "codec_audio": "aac",

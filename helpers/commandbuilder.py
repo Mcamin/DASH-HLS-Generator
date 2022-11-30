@@ -114,8 +114,7 @@ def add_dash_attributes(cmd, cf):
     assert 'output_path' in cf, 'The config is missing mandatory attribute : output_path'
     if 'init_seg_name' in cf:
         cmd = cmd + " -init_seg_name " + cf['init_seg_name']
-    if 'media_seg_name' in cf:
-        cmd = cmd + " -media_seg_name " + cf['media_seg_name']
+    cmd = cmd + " -media_seg_name " + " chunk$RepresentationID$-$Number%05d$.$ext$ "
     if 'use_template' in cf:
         cmd = cmd + " -use_template " + str(cf['use_template'])
     if 'use_timeline' in cf:

@@ -86,6 +86,7 @@ config file under [templates](./templates)
 | description    | The description of the media stream used in the UI |
 | input_file    | The input file to use to generate media streams |
 | fps | The number of frames per second    |
+| fluctuate_bitrate | force bitrate fluctuation by mixing chunks of the generated representations (default: false)  |
 | gop_size  | The GOP size   |
 | pixel_format  |  The pixel format  | 
 | codec_video        | The video codec to use  | 
@@ -102,7 +103,6 @@ config file under [templates](./templates)
 | use_timeline* |Enable (1) or disable (0) use of SegmentTimeline in SegmentTemplate.|
 | segment_duration* |Set the segment length in seconds |
 | init_seg_name* |DASH-templated name to used for the initialization.|
-| media_seg_name* |DASH-templated name to used for the media segments.|
 | adaptation_sets_fmt* |Assign streams to AdaptationSets|
 | hls_time** |Set the target segment length|
 | hls_playlist_type** |Emit #EXT-X-PLAYLIST-TYPE:VOD in the m3u8 header|

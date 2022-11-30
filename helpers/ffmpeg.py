@@ -39,6 +39,11 @@ def save_config(col_name, cf):
 
 
 def clean_hls_stream_paths(filepath):
+    """
+    Replace the absolute local path with a relative path to the m3u8 file
+    Args:
+        filepath: the absolute path to the stream files
+    """
     m3u8_files = [file for file in glob.glob(filepath + "/" + "*.m3u8")]
     for path in m3u8_files:
         fin = open(path, "rt")
@@ -54,6 +59,21 @@ def clean_hls_stream_paths(filepath):
         fin.write(data)
         # close the file
         fin.close()
+
+
+def force_bitrate_fluctuation(config, filepath, stream_type):
+    """
+    force bitrate fluctuation by mixing chunks from different representations
+    Args:
+        config: the config used to generate the stream
+        filepath:  the path where the files exists
+        stream_type:  the stream type (dash/hls)
+    """
+    # TODO: get the filenames to look for from the cf
+    if stream_type == "dash":
+        m3u8_files = [file for file in glob.glob(filepath + "/" + "chunk*")]
+        print(m3u8_files)
+    pass
 
 
 def process_configs(stream_type, configs):
@@ -79,11 +99,11 @@ def process_configs(stream_type, configs):
             print("FFmpeg Script Ran Successfully")
             if stream_type == 'hls':
                 clean_hls_stream_paths(filepath)
-                upload_files(filepath, cf["output_path"])
-            else:
-                upload_files(filepath, cf["output_path"])
-            if not (db is None):
-                save_config(stream_type, cf)
+            if "fluctuate_bitrate" in cf and cf["fluctuate_bitrate"]:
+                force_bitrate_fluctuation(cf, filepath, stream_type)
+            # upload_files(filepath, cf["output_path"])
+            # if not (db is None):
+            #    save_config(stream_type, cf)
         else:
             print("There was an error running your FFmpeg script")
 
