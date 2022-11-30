@@ -45,7 +45,7 @@ def clean_hls_stream_paths(filepath):
         # read file contents to string
         data = fin.read()
         # replace all occurrences of the required string
-        data = data.replace(filepath, '')
+        data = data.replace(filepath, '.')
         # close the input file
         fin.close()
         # open the input file in write mode

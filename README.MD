@@ -140,6 +140,13 @@ To be added
   here: [CI/CD Setup & Planning](https://fluence.fokus.fraunhofer.de/pages/viewpage.action?pageId=23658588)
 
 ### Changelog
+#### 1.0.0 - [28.11.2022 - 02.12.2022]
+###### Added
+- [X] Added dynamic representations 
+- [X] Added  drawbox filter 
+###### Fixed
+- [X] Fixed hls streams path in m3u8 files
+
 #### 1.0.0 - [14.11.2022 - 18.11.2022]
 ###### Fixed
 - [X] Fixed paths in config
