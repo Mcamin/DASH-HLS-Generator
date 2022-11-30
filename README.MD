@@ -82,6 +82,8 @@ config file under [templates](./templates)
 
 | Attribute    | Description |
 | ----------- |  ---------| 
+| title    | A title used in the UI |
+| description    | The description of the media stream used in the UI |
 | input_file    | The input file to use to generate media streams |
 | fps | The number of frames per second    |
 | gop_size  | The GOP size   |
@@ -95,6 +97,7 @@ config file under [templates](./templates)
 |keyint_min | The minimum length of the GOP |
 | preset | The preset to use|
 | output_path |The s3 path where the files will be uploaded|
+| representations | An array of representations configurations. See Representation table for more details|
 | use_template* |Enable (1) or disable (0) use of SegmentTemplate instead of SegmentList.|
 | use_timeline* |Enable (1) or disable (0) use of SegmentTimeline in SegmentTemplate.|
 | segment_duration* |Set the segment length in seconds |
@@ -109,7 +112,13 @@ config file under [templates](./templates)
 | stream_filename** |The streams filenames template |
 __`**` denote to an hls specific attribute__
 __`*` denote to a dash specific attribute__
-
+#### Representation attributes: 
+| Attribute    | Description |
+| ----------- |  ---------| 
+| title    | A title used in the UI |
+| description    | The description of the media stream used in the UI |
+| input_file    | The input file to use to generate media streams |
+| fps | The number of frames per second    |
 More details about the available attributes can be found in the references below. 
 
 ### Docker 
@@ -130,6 +139,10 @@ To be added
   here: [CI/CD Setup & Planning](https://fluence.fokus.fraunhofer.de/pages/viewpage.action?pageId=23658588)
 
 ### Changelog
+#### 1.0.0 - [14.11.2022 - 18.11.2022]
+###### Fixed
+- [X] Fixed paths in config
+- [X] Fixed lib not being loaded 
 #### 1.0.0 - [07.11.2022 - 11.11.2022]
 ###### Added
 - [X] Added documentation

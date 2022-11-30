@@ -72,15 +72,15 @@ def add_audio_channel(cmd, cf):
 
 def add_audio_rate(cmd, cf):
     if 'audio_rate' in cf:
-        return cmd + " -ar " + str(cf['audio_rate'])
+        return cmd + " -ar " + str(cf['audio_rate']) + " "
     return cmd
 
 
 def add_video_mapping(cmd, cf):
-    # TODO: adjust it according to passed config
-    maps = """ -map v:0 -s:0 1280x720 -b:v:0 2000K -maxrate:0 2000K -bufsize:0 2000K/2 \
-    -map v:0 -s:1 1280x720 -b:v:1 1000K -maxrate:1 1000K -bufsize:1 1000K/2 \
-    -map v:0 -s:2 1280x720 -b:v:2 500K -maxrate:2 500K -bufsize:2 500K/2 """
+    maps = ""
+    if "representations" in cf and len(cf['representations']) > 0:
+        for i, re in enumerate(cf["representations"]):
+            maps = maps + f'-map v:0 -s:{i} {re["resolution"]} -b:v:{i} {re["video_bitrate"]} -maxrate:{i} {re["max_rate"]} -bufsize:{i} {re["buffer_size"]} '
     return cmd + maps
 
 
@@ -94,6 +94,19 @@ def add_audio_mapping(cmd, cf):
 
 
 def add_filters(cmd, cf):
+    splits_attr = ""
+    splits_nbr = 0
+    filters = ""
+    if "representations" in cf and len(cf['representations']) > 0:
+        for i, re in enumerate(cf["representations"]):
+            if re["apply_filter"]:
+                splits_attr = splits_attr + f'[s{i}]'
+                splits_nbr += 1
+                filters = filters + f"[s{i}]drawtext=text='{re['resolution']}-{re['video_bitrate']}':x=(w-text_w)/2" \
+                                    ":y=(h-text_h)/4:box=1:boxcolor=black@0.8:fontsize=80:fontcolor=white;"
+        if splits_nbr > 0:
+            filter_cmd = f' -filter_complex "split={splits_nbr}{splits_attr};{filters[:-1]}" '
+            return cmd + filter_cmd
     return cmd
 
 
