@@ -1,5 +1,8 @@
 import subprocess
 import re
+import glob
+import sys
+import fileinput
 import os
 import helpers.commandbuilder as cb
 import helpers.mongohandler as mongo
@@ -35,6 +38,24 @@ def save_config(col_name, cf):
     mongo.insert_config(col, cf)
 
 
+def clean_hls_stream_paths(filepath):
+    m3u8_files = [file for file in glob.glob(filepath + "/" + "*.m3u8")]
+    for path in m3u8_files:
+        fin = open(path, "rt")
+        # read file contents to string
+        data = fin.read()
+        # replace all occurrences of the required string
+        data = data.replace(filepath, '')
+        # close the input file
+        fin.close()
+        # open the input file in write mode
+        fin = open(path, "wt")
+        # overwrite the input file with the resulting data
+        fin.write(data)
+        # close the file
+        fin.close()
+
+
 def process_configs(stream_type, configs):
     assert base_path, 'OUTPUT_BASE_PATH must be configured in the as an environment variable.'
     """
@@ -56,7 +77,11 @@ def process_configs(stream_type, configs):
         # shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
         if subprocess.run(cmd).returncode == 0:
             print("FFmpeg Script Ran Successfully")
-            upload_files(filepath, cf["output_path"])
+            if stream_type == 'hls':
+                clean_hls_stream_paths(filepath)
+                upload_files(filepath, cf["output_path"])
+            else:
+                upload_files(filepath, cf["output_path"])
             if not (db is None):
                 save_config(stream_type, cf)
         else:

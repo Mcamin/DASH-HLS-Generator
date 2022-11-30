@@ -8,7 +8,7 @@ generating the files.__
 - __The current setup generates 3 representations / streams for the passed configs. This will be configurable in the future__
 ## TODO:
 - [X] Add filter capabilities to draw a box with video details 
-- [ ] Fix streams in hls generated files
+- [X] Fix streams in hls generated files
 - [ ] Set up the representations shuffle process (to force bitrate fluctuation)
 - [ ] Add option to delete local generated file
 - [ ] Check mp4box and GPAC for generating HLS Dash  compliant streams 
