@@ -1,6 +1,9 @@
 {
  "dash":[
-  {"input_file":"./media/4k60fps.webm",
+  {
+   "title": "Black widow - 3 representations",
+   "description": "3 Representations with 50% fluctuation",
+   "input_file":"./media/4k60fps.webm",
    "fps": 30,
    "gop_size": 60,
     "pixel_format": "yuv420p",
@@ -18,11 +21,35 @@
     "init_seg_name": "init$RepresentationID$.$ext$",
     "media_seg_name": " chunk$RepresentationID$-$Number%05d$.$ext$",
     "adaptation_sets_fmt": "id=0,streams=v id=1,streams=a",
-    "output_path": "dash/black_widow"
+    "output_path": "dash/black_widow",
+    "representations": [
+    { "apply_filter": true,
+     "video_bitrate":  "2000K",
+     "max_rate": "2000K",
+     "buffer_size": "2000K/2",
+     "resolution": "1280x720"
+    },
+    {
+     "apply_filter": true,
+     "video_bitrate":  "1000K",
+     "max_rate": "1000K",
+     "buffer_size": "1000K/2",
+     "resolution": "1280x720"
+    },
+    {
+     "apply_filter": true,
+     "video_bitrate":  "500K",
+     "max_rate": "500K",
+     "buffer_size": "500K/2",
+     "resolution": "1280x720"
+    }
+   ]
   }
 ],
  "hls": [
-  {"input_file":"./media/4k60fps.webm",
+  {"title": "Black widow - 3 representations",
+   "description": "3 Representations with 50% fluctuation",
+   "input_file":"./media/4k60fps.webm",
    "fps": 30,
    "gop_size": 60,
     "pixel_format": "yuv420p",
@@ -40,7 +67,29 @@
      "hls_segment_filename": "stream_%v/s%06d.ts",
     "strftime_mkdir": 1,
     "stream_filename": "stream_%v.m3u8",
-     "output_path": "hls/black_widow"
+    "output_path": "hls/black_widow",
+    "representations": [
+    { "apply_filter": true,
+     "video_bitrate":  "2000K",
+     "max_rate": "2000K",
+     "buffer_size": "2000K/2",
+     "resolution": "1280x720"
+    },
+    {
+     "apply_filter": true,
+     "video_bitrate":  "1000K",
+     "max_rate": "1000K",
+     "buffer_size": "1000K/2",
+     "resolution": "1280x720"
+    },
+    {
+     "apply_filter": true,
+     "video_bitrate":  "500K",
+     "max_rate": "500K",
+     "buffer_size": "500K/2",
+     "resolution": "1280x720"
+    }
+   ]
   }
 ]
 }

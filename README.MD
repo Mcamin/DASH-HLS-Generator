@@ -7,10 +7,10 @@ using FFmpeg for both VOD and live content.
 generating the files.__
 - __The current setup generates 3 representations / streams for the passed configs. This will be configurable in the future__
 ## TODO:
-- [ ] Add filter capabilities to draw a box with video details 
+- [X] Add filter capabilities to draw a box with video details 
+- [ ] Fix streams in hls generated files
 - [ ] Set up the representations shuffle process (to force bitrate fluctuation)
 - [ ] Add option to delete local generated file
-- [ ] Fix streams in hls generated files 
 - [ ] Check mp4box and GPAC for generating HLS Dash  compliant streams 
 - [ ] Check shaka packager and streamer and how they do generate multi period content
 
@@ -115,10 +115,11 @@ __`*` denote to a dash specific attribute__
 #### Representation attributes: 
 | Attribute    | Description |
 | ----------- |  ---------| 
-| title    | A title used in the UI |
-| description    | The description of the media stream used in the UI |
-| input_file    | The input file to use to generate media streams |
-| fps | The number of frames per second    |
+| apply_filter    | Draw a box containing the resolution and bitrate if set to true |
+| video_bitrate    | The video bitrate for the resolution |
+| max_rate    | The maximum bitrate allowed for the representation  |
+| buffer_size | The buffer size    |
+| resolution | The resolution of the representation     |
 More details about the available attributes can be found in the references below. 
 
 ### Docker 
